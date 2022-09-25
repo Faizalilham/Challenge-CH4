@@ -7,17 +7,20 @@ import android.content.DialogInterface
 import android.os.Handler
 import android.util.Log
 import android.view.LayoutInflater
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.core.content.res.ResourcesCompat
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
+import androidx.navigation.Navigation
 import com.example.challengeroom.R
 import com.example.challengeroom.databinding.AddAlertBinding
 import com.example.challengeroom.model.Note
 import com.example.challengeroom.room.Dao
 import com.example.challengeroom.room.SetupRoom
+import com.example.challengeroom.util.Constant
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -121,6 +124,27 @@ class NoteViewModel(application: Application) : AndroidViewModel(application) {
             setPositiveButton(deleteText){ dialogInterface: DialogInterface, i: Int ->
                deleteData(note)
                 setToast(context,tittleToast,message,style)
+            }
+            setNegativeButton(cancelText){ dialogInterface: DialogInterface, i: Int -> }
+        }
+        alert.show()
+
+    }
+
+    fun logoutAlert(context: Context, view : View, logoutText : String, cancelText : String, tittleAlert : String, messageAlert : String){
+        val alert = AlertDialog.Builder(context)
+        val sharePref = context.getSharedPreferences(Constant.SHARE_PREFERENCE,Context.MODE_PRIVATE)
+        alert.apply {
+            setTitle(tittleAlert)
+            setMessage(messageAlert)
+            setIcon(R.drawable.ic_baseline_warning_24)
+            setPositiveButton(logoutText){ dialogInterface: DialogInterface, i: Int ->
+                sharePref.edit().apply{
+                    clear()
+                    apply()
+                }
+             Navigation.findNavController(view).navigate(R.id.loginFragment)
+
             }
             setNegativeButton(cancelText){ dialogInterface: DialogInterface, i: Int -> }
         }

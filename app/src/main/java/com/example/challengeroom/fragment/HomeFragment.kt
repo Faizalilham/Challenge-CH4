@@ -53,6 +53,7 @@ class HomeFragment : Fragment() {
             noteAdapter.submitData(it)
         }
         addItem()
+        doLogout()
     }
 
 
@@ -117,6 +118,17 @@ class HomeFragment : Fragment() {
            }catch(e : Exception){
                noteViewModel.addAlert(requireActivity(),layoutInflater,tittleAlertAdd,tittleErrorToast,toastError,MotionToastStyle.ERROR)
            }
+        }
+    }
+
+    private fun doLogout(){
+        binding.linearLogout.setOnClickListener {
+            val cancelText = resources.getString(R.string.alert_cancel)
+            val logoutText = resources.getString(R.string.alert_logout)
+            val logoutWarning = resources.getString(R.string.alert_warning_delete)
+            val logoutMessage = resources.getString(R.string.alert_logout)
+            noteViewModel.logoutAlert(requireActivity(),binding.root,logoutText,cancelText,logoutWarning,logoutMessage)
+
         }
     }
 }

@@ -44,9 +44,10 @@ class LoginFragment : Fragment() {
            val password = binding.etPassword.text.toString().trim()
            val emails = sharePref.getString(Constant.EMAIL,Constant.UNDEFINED)
            val passwords = sharePref.getString(Constant.PASSWORD,Constant.UNDEFINED)
+           val username = sharePref.getString(Constant.USERNAME,Constant.UNDEFINED)
            if(email.isNotBlank() && password.isNotBlank()){
                if(email.equals(emails) && password.equals(passwords)){
-                   setToast(SUCCESS, SUCCESS_MESSAGE,MotionToastStyle.SUCCESS)
+                   setToast(SUCCESS, "$SUCCESS_MESSAGE ,Hai $username",MotionToastStyle.SUCCESS)
                    Navigation.findNavController(binding.root).navigate(R.id.homeFragment)
                }else{
                   setToast(ERROR, ERROR_MESSAGE,MotionToastStyle.ERROR)

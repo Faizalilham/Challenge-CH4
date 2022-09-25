@@ -42,6 +42,8 @@
     <string name="alert_add_tittle">Add Item</string>
     <string name="alert_cancel">"Cancel</string>
     <string name="alert_delete">Delete</string>
+    <string name="alert_logout">Logout</string>
+    <string name="alert_logout_message">Are you sure you want to log out?</string>
 
 
 </resources>
