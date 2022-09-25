@@ -126,7 +126,7 @@ class HomeFragment : Fragment() {
             val cancelText = resources.getString(R.string.alert_cancel)
             val logoutText = resources.getString(R.string.alert_logout)
             val logoutWarning = resources.getString(R.string.alert_warning_delete)
-            val logoutMessage = resources.getString(R.string.alert_logout)
+            val logoutMessage = resources.getString(R.string.alert_logout_message)
             noteViewModel.logoutAlert(requireActivity(),binding.root,logoutText,cancelText,logoutWarning,logoutMessage)
 
         }
